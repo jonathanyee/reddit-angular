@@ -5,7 +5,7 @@ var redditController = angular.module('redditController', ['ngSanitize']);
 redditController.controller('MainCtrl',
   ['$scope', '$http', '$sce',
   function ($scope, $http, $sce) {
-    $http.get('http://www.reddit.com/.json').success(function(data) {
+    $http.get('http://www.reddit.com/r/funny/.json').success(function(data) {
         $scope.posts = [];
         var redditData = data.data.children;
         for (var i = 0; i < redditData.length; i++) {
@@ -17,10 +17,11 @@ redditController.controller('MainCtrl',
       var post = $scope.posts[index];
       console.log(post);
       $scope.post = post;
+      $scope.selftext = (post.selftext !== '') ? post.selftext : false;
       $scope.image = (isImage(post.url)) ? post.url : false;
       // $scope.thumbnail = (post.thumbnail !== '') ? post.thumbnail : false;
       $scope.embed = (post.media) ?
-        $sce.trustAsHtml(unescapedHtml(post.media.oembed.html)) : null;
+        $sce.trustAsHtml(unescapedHtml(post.media.oembed.html)) : false;
     };
 
     function isImage(url) {
