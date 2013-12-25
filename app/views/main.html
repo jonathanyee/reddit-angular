@@ -10,7 +10,7 @@
   <div class="col-md-8 flow" ng-model="post">
     <h2><a ng-href="{{post.url}}">{{post.title}}</a></h2>
     <h3>{{post.subreddit}}</h3>
-    <div ng-if="selftext" ng-src="{{selftext}}" />
+    <div ng-if="selftext" ng-src="{{selftext}}"></div>
     <img class="img" ng-if="image" ng-src="{{image}}" /> 
     <div ng-if="embed" ng-bind-html="embed"></div>
   </div>
